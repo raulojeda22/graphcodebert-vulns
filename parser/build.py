@@ -9,13 +9,7 @@ Language.build_library(
 
   # Include one or more languages
   [
-    'tree-sitter-go',
-    'tree-sitter-javascript',
-    'tree-sitter-python',
-    'tree-sitter-php',
     'tree-sitter-java',
-    'tree-sitter-ruby',
-    'tree-sitter-c-sharp',
   ]
 )
 
