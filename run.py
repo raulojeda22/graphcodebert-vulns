@@ -247,7 +247,7 @@ class TextDataset(Dataset):
     
     def __getitem__(self, item):
         #calculate graph-guided masked function
-        attn_mask=np.zeros((self.args.max_source_length,self.args.max_source_length),dtype=np.bool)
+        attn_mask=np.zeros((self.args.max_source_length,self.args.max_source_length),dtype=bool)
         #calculate begin index of node and max length of input
         node_index=sum([i>1 for i in self.examples[item].position_idx])
         max_length=sum([i!=1 for i in self.examples[item].position_idx])
