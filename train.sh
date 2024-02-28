@@ -1,6 +1,6 @@
 #!/bin/bash
 
-scale=small
+scale=xsmall
 lr=1e-4
 batch_size=16
 beam_size=5
