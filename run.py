@@ -448,7 +448,7 @@ def main():
                     global_step += 1
 
             # TODO: REMOVE HOTFIX
-            if args.do_eval and epoch in [2, 4]: #[ int(args.num_train_epochs*(i+1)//20) for i in range(20)]:
+            if args.do_eval and epoch in [4]: #[ int(args.num_train_epochs*(i+1)//20) for i in range(20)]:
                 #Eval model with dev dataset
                 tr_loss = 0
                 nb_tr_examples, nb_tr_steps = 0, 0                     
