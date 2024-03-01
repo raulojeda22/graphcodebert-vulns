@@ -320,6 +320,8 @@ def main():
                         help="Whether to run eval on the dev set.")
     parser.add_argument("--do_test", action='store_true',
                         help="Whether to run eval on the dev set.")
+    parser.add_argument("--do_inference", action='store_true',
+                        help="Whether to run eval on the dev set.")
     parser.add_argument("--do_lower_case", action='store_true',
                         help="Set this flag if you are using an uncased model.")
     parser.add_argument("--no_cuda", action='store_true',
@@ -603,7 +605,47 @@ def main():
                                  os.path.join(args.output_dir, "test_{}.output".format(str(idx))).format(file)),2)
             logger.info("  %s = %s "%("bleu-4",str(dev_bleu)))
             logger.info("  %s = %s "%("xMatch",str(round(np.mean(accs)*100,4))))
-            logger.info("  "+"*"*20)   
+            logger.info("  "+"*"*20)
+
+    if args.do_inference:
+        files=[]
+        if args.dev_filename is not None:
+            files.append(args.dev_filename)
+        if args.test_filename is not None:
+            files.append(args.test_filename)
+        for idx,file in enumerate(files):
+            print(idx, file)
+            logger.info("Test file: {}".format(file))
+            eval_examples = read_examples(file)
+            eval_features = convert_examples_to_features(eval_examples, tokenizer, args,stage='test')
+            eval_data = TextDataset(eval_features,args) 
+
+            # Calculate bleu
+            eval_sampler = SequentialSampler(eval_data)
+            eval_dataloader = DataLoader(eval_data, sampler=eval_sampler, batch_size=args.eval_batch_size,num_workers=4)
+
+            model.eval() 
+            p=[]
+            for batch in tqdm(eval_dataloader,total=len(eval_dataloader)):
+                batch = tuple(t.to(device) for t in batch)
+                source_ids,source_mask,position_idx,att_mask,target_ids,target_mask = batch                    
+                with torch.no_grad():
+                    preds = model(source_ids,source_mask,position_idx,att_mask)  
+                    for pred in preds:
+                        t=pred[0].cpu().numpy()
+                        t=list(t)
+                        if 0 in t:
+                            t=t[:t.index(0)]
+                        text = tokenizer.decode(t,clean_up_tokenization_spaces=False)
+                        p.append(text)
+            model.train()
+            predictions=[]
+            accs=[]
+            with open(os.path.join(args.output_dir,"test_{}.output".format(str(idx))),'w') as f, open(os.path.join(args.output_dir,"test_{}.gold".format(str(idx))),'w') as f1:
+                for ref,gold in zip(p,eval_examples):
+                    print(ref.replace(";", ";\n").replace("\{", "\{\n").replace("\}", "\}\n"))
+                    print(gold.replace(";", ";\n").replace("\{", "\{\n").replace("\}", "\}\n"))
+              
             
 if __name__ == "__main__":
     main()

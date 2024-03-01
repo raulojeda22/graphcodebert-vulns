@@ -10,7 +10,12 @@ do
     cd ../..
     cat keywords.txt | while read k
     do
-        grep "$k" "projects/$folder/log.txt" | cut -d" " -f2 >> projects/$folder/bugCommits.txt
+        if [ -z "$k" ]
+        then
+            echo "$k is empty"
+        else
+            grep "$k" "projects/$folder/log.txt" | cut -d" " -f2 >> projects/$folder/bugCommits.txt
+        fi
     done
     cd "projects/$folder"
     for c in $(cat bugCommits.txt)

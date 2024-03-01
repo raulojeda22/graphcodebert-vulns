@@ -2,10 +2,10 @@
 
 scale=vulns
 lr=1e-4
-batch_size=16
+batch_size=4
 beam_size=5
-source_length=205087 # wc -L data/vulns/train.buggy-fixed.buggy
-target_length=205132 # wc -L data/vulns/train.buggy-fixed.fixed
+source_length=2000 # wc -L data/vulns/train.buggy-fixed.buggy
+target_length=2000 # wc -L data/vulns/train.buggy-fixed.fixed
 output_dir=saved_models/$scale/
 train_file=data/$scale/train.buggy-fixed.buggy,data/$scale/train.buggy-fixed.fixed
 dev_file=data/$scale/valid.buggy-fixed.buggy,data/$scale/valid.buggy-fixed.fixed

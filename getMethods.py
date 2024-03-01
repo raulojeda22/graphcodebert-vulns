@@ -79,11 +79,12 @@ for i in range(len(nextmethods)):
                 text_file.write("")
             exit()
 
+maxfunclength = 2000
 buggy = ""
 fixed = ""
 for i in range(len(prevmethods)):
     for j in range(len(nextmethods)):
-        if prevmethods[i]['name'] == nextmethods[j]['name'] and prevmethods[i]['params'] == nextmethods[j]['params'] and prevmethods[i]['body'] != nextmethods[j]['body']:
+        if prevmethods[i]['name'] == nextmethods[j]['name'] and prevmethods[i]['params'] == nextmethods[j]['params'] and prevmethods[i]['body'] != nextmethods[j]['body'] and len(nextmethods[j]['body']) < maxfunclength and len(prevmethods[i]['body']) < maxfunclength:
             buggy += prevmethods[i]['node'] + "\n"
             fixed += nextmethods[j]['node'] + "\n"
 

@@ -5,10 +5,10 @@ load_model_path=$output_dir/checkpoint-best-bleu/pytorch_model.bin #checkpoint f
 
 scale=vulns
 lr=1e-4
-batch_size=16
+batch_size=4
 beam_size=5
-source_length=74412 #wc -L data/vulns/test.buggy-fixed.fixed
-target_length=74558 #wc -L data/vulns/test.buggy-fixed.buggy
+source_length=2000 #wc -L data/vulns/test.buggy-fixed.fixed
+target_length=2000 #wc -L data/vulns/test.buggy-fixed.buggy
 output_dir=saved_models/$scale/
 train_file=data/$scale/train.buggy-fixed.buggy,data/$scale/train.buggy-fixed.fixed
 dev_file=data/$scale/valid.buggy-fixed.buggy,data/$scale/valid.buggy-fixed.fixed
