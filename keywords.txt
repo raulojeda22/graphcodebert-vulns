@@ -1,0 +1,79 @@
+security
+secure
+exploit
+vuln
+CVE
+threat
+OWASP
+leak
+account takeover
+injection
+business logic error
+attack
+CICD attack
+CORS Misconfig
+CRLF injection
+CSRF injection
+CSV injection
+clickjacking
+dns rebinding
+dependency confusion
+directory traversal
+dom clobbering
+file inclusion
+parameter pollution
+insecure deserialization
+insecure direct object references
+insecure management interface
+insecure randomness
+RCE
+LDAP injection
+latex injection
+mass assignment
+nosql injection
+open redirect
+prompt injection
+prototype pollution
+race condition
+request smuggling
+saml injection
+sql injection
+SSI
+SSRF
+Server side request forgery
+Template Injection
+Tabnabbing
+Type Juggling
+Upload Insecure files
+Insecure files
+Web Cache Deception
+XPATH Injection
+XSLT Injection
+XSS injection
+XXE injection
+remote code exec
+remote exec
+auth bypass
+authentication bypass
+authorization bypass
+privilege escalation
+hijacking
+input validation
+output encoding
+hardening
+audit
+improper access control
+mail injection
+information leaks
+path traversal
+cross-site scripting
+XSS
+buffer overflow
+buffer overrun
+XXE
+payload
+data encrypt
+WAF
+RFI
+LFI
+malware
