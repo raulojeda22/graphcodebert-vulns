@@ -1,7 +1,7 @@
 batch_size=64
 dev_file=data/$scale/valid.buggy-fixed.buggy,data/$scale/valid.buggy-fixed.fixed
 test_file=data/$scale/test.buggy-fixed.buggy,data/$scale/test.buggy-fixed.fixed
-load_model_path=$output_dir/checkpoint-best-bleu/pytorch_model.bin #checkpoint for test
+load_model_path=$output_dir./saved_models/vulns/checkpoint-last/pytorch_model.bin #checkpoint for test
 
 scale=vulns
 lr=1e-4

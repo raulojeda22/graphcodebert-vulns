@@ -79,7 +79,7 @@ for i in range(len(nextmethods)):
                 text_file.write("")
             exit()
 
-maxfunclength = 514
+maxfunclength = 500
 buggy = ""
 fixed = ""
 for i in range(len(prevmethods)):

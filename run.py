@@ -643,8 +643,10 @@ def main():
             accs=[]
             with open(os.path.join(args.output_dir,"test_{}.output".format(str(idx))),'w') as f, open(os.path.join(args.output_dir,"test_{}.gold".format(str(idx))),'w') as f1:
                 for ref,gold in zip(p,eval_examples):
+                    print("ORIGINAL CODE:")
+                    print(gold.target.replace(";", ";\n").replace("\{", "\{\n").replace("\}", "\}\n"))
+                    print("CORRECTED CODE:")
                     print(ref.replace(";", ";\n").replace("\{", "\{\n").replace("\}", "\}\n"))
-                    print(gold.replace(";", ";\n").replace("\{", "\{\n").replace("\}", "\}\n"))
               
             
 if __name__ == "__main__":
