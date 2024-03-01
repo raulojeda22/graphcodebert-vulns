@@ -1,5 +1,7 @@
 echo -n "" > out.buggy
 echo -n "" > out.fixed
+mkdir parser2
+cp parser/my-languages.so parser2/my-languages.so
 for p in $(cat javaprojects.txt)
 do
     folder=$(echo $p | cut -d"/" -f5)
