@@ -1,23 +1,25 @@
 batch_size=64
+scale=vulns
 dev_file=data/$scale/valid.buggy-fixed.buggy,data/$scale/valid.buggy-fixed.fixed
 
-cat testfile.java | tr "\n" " " > data/$scale/analyze.buggy-fixed.buggy,data/$scale/analyze.buggy-fixed.fixed
+cat testfile.java | tr "\n" " " > data/$scale/analyze.buggy-fixed.buggy
+cat testfile.java | tr "\n" " " > data/$scale/analyze.buggy-fixed.fixed
 
 test_file=data/$scale/analyze.buggy-fixed.buggy,data/$scale/analyze.buggy-fixed.fixed
 
+output_dir=saved_models/$scale/
 
-load_model_path=$output_dir/checkpoint-best-bleu/pytorch_model.bin #checkpoint for test
+load_model_path=$output_dir/checkpoint-best-ppl/pytorch_model.bin #checkpoint for test
 
-scale=vulns
 lr=1e-4
 batch_size=4
 beam_size=5
 source_length=514 #wc -L data/vulns/test.buggy-fixed.fixed
 target_length=514 #wc -L data/vulns/test.buggy-fixed.buggy
-output_dir=saved_models/$scale/
+
 
 train_file=data/$scale/train.buggy-fixed.buggy,data/$scale/train.buggy-fixed.fixed
-dev_file=data/$scale/valid.buggy-fixed.buggy,data/$scale/valid.buggy-fixed.fixed
+dev_file=data/$scale/analyze.buggy-fixed.buggy,data/$scale/analyze.buggy-fixed.fixed
 
 epochs=5
 pretrained_model=microsoft/graphcodebert-base
