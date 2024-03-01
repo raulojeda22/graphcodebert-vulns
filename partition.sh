@@ -10,11 +10,11 @@ test=$(($rest-$valid))
 
 echo $train $valid $test
 
-head -n $train outrand.fixed > data/vulns/train.buggy-fixed.fixed
-head -n $train outrand.buggy > data/vulns/train.buggy-fixed.buggy
-tail -n $rest outrand.fixed > data/vulns/part.fixed
-tail -n $rest outrand.buggy > data/vulns/part.buggy
-head -n $valid part.fixed > data/vulns/valid.buggy-fixed.fixed
-head -n $valid part.buggy > data/vulns/valid.buggy-fixed.buggy
-tail -n $test part.fixed > data/vulns/test.buggy-fixed.fixed
-tail -n $test part.buggy > data/vulns/test.buggy-fixed.buggy
+head -n $train data/vulns/outrand.fixed > data/vulns/train.buggy-fixed.fixed
+head -n $train data/vulns/outrand.buggy > data/vulns/train.buggy-fixed.buggy
+tail -n $rest data/vulns/outrand.fixed > data/vulns/part.fixed
+tail -n $rest data/vulns/outrand.buggy > data/vulns/part.buggy
+head -n $valid data/vulns/part.fixed > data/vulns/valid.buggy-fixed.fixed
+head -n $valid data/vulns/part.buggy > data/vulns/valid.buggy-fixed.buggy
+tail -n $test data/vulns/part.fixed > data/vulns/test.buggy-fixed.fixed
+tail -n $test data/vulns/part.buggy > data/vulns/test.buggy-fixed.buggy
